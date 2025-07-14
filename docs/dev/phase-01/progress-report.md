@@ -95,8 +95,25 @@ Failed: 0
 - `package.json` に `test`, `test:watch` スクリプトを追加
 - Jestによるテスト実行環境の確立
 
+### タスク004: CLI version command ✅ 完了
+#### 004-1: RED フェーズ（完了）
+- ✅ `mcp-env --version` が正しいバージョンを返すかテストを作成
+- ✅ `-v` オプションも同様にテスト
+- ✅ テストが期待通り失敗することを確認
+
+#### 004-2: GREEN フェーズ（完了）
+- ✅ `commander` を使って `--version` と `-v` オプションを実装
+- ✅ `package.json` からバージョンを動的に読み込み
+- ✅ テストが成功することを確認
+
+#### 004-3: REFACTOR フェーズ（完了）
+- ✅ コードが十分にシンプルであるため、リファクタリングは不要と判断
+
+**成果物:**
+- `mcp-env --version` コマンドの実装
+
 ### 次のタスク
-- タスク004: CLI version command（準備中）
+- タスク005: CLI help command（準備中）
 
 ### TODO管理
 - `docs/dev/phase-01/` ディレクトリに40個の細分化されたタスクを作成済み
