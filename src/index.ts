@@ -2,6 +2,7 @@
 
 import { Command } from 'commander';
 import { version } from '../package.json';
+import { createInitCommand } from './commands/init';
 import { HELP_MESSAGES } from './commands/help';
 
 const program = new Command();
@@ -12,12 +13,7 @@ program
   .version(version, '-v, --version', 'output the current version');
 
 // Add subcommands
-program
-  .command('init')
-  .description(HELP_MESSAGES.commands.init)
-  .action(() => {
-    console.log('Init command - not yet implemented');
-  });
+program.addCommand(createInitCommand());
 
 program
   .command('add')
