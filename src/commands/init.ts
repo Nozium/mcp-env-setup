@@ -1,4 +1,5 @@
 import { Command } from 'commander';
+import { HELP_MESSAGES } from './help';
 
 export interface InitOptions {
   template?: string;
@@ -7,7 +8,7 @@ export interface InitOptions {
 
 export function createInitCommand(): Command {
   return new Command('init')
-    .description('Initialize MCP environment configuration')
+    .description(HELP_MESSAGES.commands.init)
     .option('-t, --template <template>', 'specify configuration template')
     .option('-f, --force', 'overwrite existing configuration')
     .action((options: InitOptions) => {
