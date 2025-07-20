@@ -14,6 +14,10 @@ module.exports = {
     '^@utils/(.*)$': '<rootDir>/src/utils/$1',
   },
   collectCoverage: true,
+  collectCoverageFrom: [
+    'src/**/*.ts',
+    '!src/**/__tests__/**/*.ts',
+  ],
   coverageDirectory: 'coverage',
   coverageProvider: 'v8',
   coveragePathIgnorePatterns: [
