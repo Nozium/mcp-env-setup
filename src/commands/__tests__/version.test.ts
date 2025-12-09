@@ -4,14 +4,16 @@ import { version } from '../../../package.json';
 
 const execAsync = promisify(exec);
 
+const CLI = 'npx ts-node src/index.ts';
+
 describe('CLI version command', () => {
   it('should return the correct version with --version', async () => {
-    const { stdout } = await execAsync('ts-node src/index.ts --version');
+    const { stdout } = await execAsync(`${CLI} --version`);
     expect(stdout.trim()).toBe(version);
   });
 
   it('should return the correct version with -v', async () => {
-    const { stdout } = await execAsync('ts-node src/index.ts -v');
+    const { stdout } = await execAsync(`${CLI} -v`);
     expect(stdout.trim()).toBe(version);
   });
 });
