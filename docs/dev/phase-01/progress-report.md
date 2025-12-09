@@ -1,254 +1,40 @@
 # Phase 1 進捗レポート
 
+最終更新: 2025-12-09
+
 ## 概要
-MCP Environment Setup Tool のPhase 1実装を開始しました。TDDのRed-Green-Refactorサイクルに基づいて、各機能を細かいタスクに分割し、段階的に実装を進めています。
+Phase-01 は初期セットアップまで完了し、CLI のコマンド実装以降は未着手です。現状のコードでは `mcp-env --version` が動作する一方、`help/init/add/sync/auth/template` はスケルトン状態でテストもありません。以降の Phase-02/03 は着手前のため、Phase-01 の残タスク消化が最優先です。
 
-## 完了したタスク
+## 進捗サマリ（Phase-01 タスク001-012）
+| ID | 内容 | Status | 備考 |
+| --- | --- | --- | --- |
+| 001 | Setup Project Structure | ✅ 完了 | ディレクトリ構成と初期テストを整備。
+| 002 | TypeScript Configuration | ✅ 完了 | `tsconfig.json` 整備、`npm run typecheck` 追加。
+| 003 | Jest Testing Framework Setup | ✅ 完了 | `jest.config.js` と基本テスト追加。
+| 004 | CLI version command | ✅ 完了 | `mcp-env --version` / `-v` 実装。
+| 005 | CLI help command | ⏳ 未着手 | テスト・実装とも未作成。
+| 006 | init command | ⏳ 未着手 | スケルトンのみ、テストなし。
+| 007 | add command | ⏳ 未着手 | スケルトンのみ、テストなし。
+| 008 | sync command | ⏳ 未着手 | 差分検出ロジック未実装。
+| 009 | auth command | ⏳ 未着手 | 認証保存・暗号化処理なし。
+| 010 | template command | ⏳ 未着手 | テンプレート探索・出力なし。
+| 011 | MCP server model | ⏳ 未着手 | モデル定義・検証なし。
+| 012 | MCP config model | ⏳ 未着手 | モデル定義・検証なし。
 
-### タスク001: Setup Project Structure ✅ 完了
-#### 001-1: RED フェーズ（完了）
-- ✅ プロジェクトのディレクトリ構造を検証するテストを作成
-- ✅ 必要なファイルの存在を確認するテストを作成  
-- ✅ テストを実行して失敗することを確認
+## 実装確認メモ
+- 現在のテストは `tests/project-structure.test.js`, `tests/typescript-config.test.js`, `tests/jest-config.test.js` のみ。CLI コマンド関連テストは未作成。
+- `src/index.ts` に `init`/`add`/`sync`/`auth`/`template` のスケルトンが存在するが、各コマンドはモック出力のみ。
 
-**成果物:**
-- `/tests/project-structure.test.js` - プロジェクト構造検証テスト
-
-#### 001-2: GREEN フェーズ（完了）
-- ✅ srcディレクトリを作成
-- ✅ src/commands, src/templates, src/generators, src/auth, src/utilsディレクトリを作成
-- ✅ index.tsファイルを作成
-- ✅ テストを実行して成功することを確認
-
-**テスト結果:**
-```
-Total tests: 7
-Passed: 7
-Failed: 0
-```
-
-#### 001-3: REFACTOR フェーズ（完了）
-- ✅ ディレクトリ構造の命名規則を統一
-- ✅ 不要なディレクトリを削除
-- ✅ READMEにディレクトリ構造を文書化
-
-**成果物:**
-- プロジェクトのディレクトリ構造が完成
-- README.mdにディレクトリの詳細説明を追加
-
-## 現在の状況
-
-### タスク002: TypeScript Configuration ✅ 完了
-#### 002-1: RED フェーズ（完了）
-- ✅ tsconfig.jsonの存在を確認するテストを作成
-- ✅ TypeScriptコンパイルが成功することを確認するテストを作成
-- ✅ テストを実行して失敗することを確認
-
-**成果物:**
-- `/tests/typescript-config.test.js` - TypeScript設定検証テスト
-
-#### 002-2: GREEN フェーズ（完了）
-- ✅ TypeScriptと必要な型定義をインストール（typescript, @types/node）
-- ✅ tsconfig.jsonを作成
-- ✅ 最小限のTypeScript設定を追加
-- ✅ テストを実行して成功することを確認
-
-**インストールしたパッケージ:**
-- typescript: ^5.8.3
-- @types/node: ^24.0.13
-
-#### 002-3: REFACTOR フェーズ（完了）
-- ✅ strictモードを有効化（全てのstrict系オプションを有効化）
-- ✅ パスエイリアスの設定（@commands, @templates, @generators, @auth, @utils）
-- ✅ ビルド出力設定の最適化（sourceMap, declaration対応）
-- ✅ テストが継続して成功することを確認
-
-**追加したnpmスクリプト:**
-- `npm run build` - TypeScriptをコンパイル
-- `npm run build:watch` - ウォッチモードでコンパイル
-- `npm run typecheck` - 型チェックのみ実行
-
-**成果物:**
-- 完全に設定されたtsconfig.json（strict mode、パスエイリアス付き）
-- JSONCフォーマット対応のテストコード
-
-### タスク003: Jest Testing Framework Setup ✅ 完了
-#### 003-1: RED フェーズ（完了）
-- ✅ jest.config.jsの存在を確認するテストを作成
-- ✅ テストを実行して失敗することを確認
-
-#### 003-2: GREEN フェーズ（完了）
-- ✅ Jest, ts-jest, @types/jest をインストール
-- ✅ jest.config.js を作成し、基本的な設定（preset, testEnvironment）を追加
-- ✅ パスエイリアスを解決するための `moduleNameMapper` を設定
-- ✅ サンプルテストファイル (`src/__tests__/sample.test.ts`) を作成
-- ✅ `package.json` に `test` スクリプトを追加
-- ✅ `npm test` を実行して成功することを確認
-
-#### 003-3: REFACTOR フェーズ（完了）
-- ✅ カバレッジ設定を追加 (`collectCoverage`, `coverageDirectory`, `coverageProvider`)
-- ✅ `test:watch` スクリプトを `package.json` に追加
-- ✅ `npm test` を実行し、カバレッジレポートが出力されることを確認
-
-**成果物:**
-- `jest.config.js` - TypeScriptとパスエイリアスに対応したJest設定
-- `package.json` に `test`, `test:watch` スクリプトを追加
-- Jestによるテスト実行環境の確立
-
-### タスク004: CLI version command ✅ 完了
-#### 004-1: RED フェーズ（完了）
-- ✅ `mcp-env --version` が正しいバージョンを返すかテストを作成
-- ✅ `-v` オプションも同様にテスト
-- ✅ テストが期待通り失敗することを確認
-
-#### 004-2: GREEN フェーズ（完了）
-- ✅ `commander` を使って `--version` と `-v` オプションを実装
-- ✅ `package.json` からバージョンを動的に読み込み
-- ✅ テストが成功することを確認
-
-#### 004-3: REFACTOR フェーズ（完了）
-- ✅ コードが十分にシンプルであるため、リファクタリングは不要と判断
-
-**成果物:**
-- `mcp-env --version` コマンドの実装
-
-### 次のタスク
-- タスク005: CLI help command（準備中）
-
-### TODO管理
-- `docs/dev/phase-01/` ディレクトリに40個の細分化されたタスクを作成済み
-- 各タスクファイルには完了状況を追跡するチェックボックスを配置
-- 完了したタスクは `[x]` でマーク
-
-## 確認方法
-
-### 1. タスク分割の確認
-```bash
-ls -la docs/dev/phase-01/
-```
-40個のタスクファイル（001_*.md から 040_*.md）が存在することを確認できます。
-
-### 2. 現在の進捗確認
-```bash
-# タスク001の進捗を確認
-cat docs/dev/phase-01/001_setup_project_structure.md
-
-# REDフェーズのテスト実行結果を確認
-node tests/project-structure.test.js
-```
-
-### 3. テストコードの確認
-```bash
-cat tests/project-structure.test.js
-```
-
-### 4. CLAUDE.mdの更新確認
-```bash
-# タスク追跡に関する注記が追加されているか確認
-tail -n 10 CLAUDE.md
-```
+## Issue 登録（要作成）
+未完了タスクを GitHub Issue として登録してください（推奨タイトル例）。
+- Phase01-CLI-Help: `mcp-env --help` 出力とテスト整備。
+- Phase01-CLI-Init-Add: `init`/`add` コマンドのテストと最小実装。
+- Phase01-Sync: `sync` コマンドの差分検出と上書き処理。
+- Phase01-Auth: 認証情報の暗号化保存と CLI 実装。
+- Phase01-Template: テンプレート一覧と適用ロジック。
+- Phase01-Models: MCP サーバー/設定モデル定義とバリデーション。
 
 ## 次のステップ
-
-### タスク001-2: GREEN フェーズ
-以下のディレクトリとファイルを作成します：
-- `src/`
-- `src/commands/`
-- `src/templates/`
-- `src/generators/`
-- `src/auth/`
-- `src/utils/`
-- `src/index.ts`
-
-作成後、`node tests/project-structure.test.js` を実行してテストが通ることを確認します。
-
-## 監督者への質問事項
-
-1. **テストフレームワーク**: 現在は純粋なNode.jsでテストロジックを実装していますが、Jestの導入タイミングについて確認が必要です（タスク003で予定）。
-
-2. **TypeScript設定**: タスク002でTypeScript環境を構築予定ですが、現時点で`index.ts`を作成する際は空ファイルで問題ないでしょうか？
-
-3. **進捗報告の頻度**: 各タスクのRED-GREEN-REFACTORサイクル完了時に報告すべきか、それとも機能単位（例：タスク001-010完了時）で報告すべきか、ご指示ください。
-
-## 品質保証
-
-- TDDの原則に厳密に従っています
-- 各フェーズで期待される結果を確実に達成しています
-- コードは将来の拡張性を考慮してモジュール化されています
-- 詳細なコメントとドキュメントを含んでいます
-
-## 確認コマンド実行結果
-
-### プロジェクト構造の確認
-```bash
-$ tree src/
-src/
-├── auth/
-├── commands/
-├── generators/
-├── index.ts
-├── templates/
-└── utils/
-
-5 directories, 1 file
-```
-
-### テスト実行結果
-```bash
-$ node tests/project-structure.test.js
-=== Project Structure Test ===
-
-Testing directory structure...
-✓ src
-✓ src/commands
-✓ src/templates
-✓ src/generators
-✓ src/auth
-✓ src/utils
-
-Testing required files...
-✓ src/index.ts
-
-=== Test Summary ===
-Total tests: 7
-Passed: 7
-Failed: 0
-
-All tests passed: YES
-```
-
-## まとめ
-
-タスク001とタスク002が完全に完了しました。プロジェクトの基本構造とTypeScript環境が整いました。
-
-### 完了タスク数
-- 完了: 2/40タスク
-- 進行率: 5%
-
-### 主な成果
-1. **プロジェクト基盤の確立**
-   - 基本的なディレクトリ構造の実装
-   - README.mdへのドキュメント追加
-
-2. **TypeScript環境の構築**
-   - TypeScriptとNode.js型定義のインストール
-   - 厳格な型チェック設定（strict mode）
-   - パスエイリアスによる開発効率の向上
-   - ビルドスクリプトの整備
-
-3. **テスト駆動開発の実践**
-   - 各機能に対する検証テストの作成
-   - RED-GREEN-REFACTORサイクルの厳密な実施
-
-### 技術的ハイライト
-- TypeScript 5.8.3 with strict mode
-- パスエイリアス設定（@commands, @templates等）
-- JSONCフォーマット対応のテストコード実装
-- 非同期処理対応のテストフレームワーク準備
-
-### 次のステップ
-タスク003（Jest Testing Framework Setup）でテスティング環境を整備し、より本格的なTDD開発体制を構築します。
-
----
-報告日時: 2025-01-10（更新）
-報告者: Claude Code Assistant
+1. タスク005の RED テスト追加 (`tests/cli.help.test.ts`) から着手し、Phase-01 要件に沿って TDD を再開。
+2. `createBaseCommand` など共通コードの抽出は GREEN 後の REFACTOR フェーズで実施。
+3. Phase-01 の CI 要件（`npm ci`, `npm test --runInBand`, `npm run typecheck`, coverage 80%）を整備し、完了後に Phase-02/03 に進む。

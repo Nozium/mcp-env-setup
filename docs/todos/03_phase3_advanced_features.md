@@ -5,6 +5,15 @@
 
 This phase focuses on extending the core functionality of `mcp-env-setup` with advanced features that enhance usability, collaboration, and extensibility. The goal is to evolve the tool from a personal setup utility into a comprehensive platform for managing team-wide and cloud-based development environments.
 
+## 1.1. Progress Status (2025-12-09)
+
+| Task | Status | Notes | Issue Registration |
+| --- | --- | --- | --- |
+| GUI Tool | ⏳ 未着手 | 前段フェーズの機能が揃い次第に着手。 | Issue: `Phase03-GUI` |
+| Plugin System | ⏳ 未着手 | プラグインAPI未設計。 | Issue: `Phase03-Plugin-System` |
+| Team Settings Sharing | ⏳ 未着手 | チーム設定フォーマット未定義。 | Issue: `Phase03-Team-Sharing` |
+| Cloud Synchronization | ⏳ 未着手 | 同期基盤未実装。 | Issue: `Phase03-Cloud-Sync` |
+
 ## 2. Scope of Work
 
 ### 2.1. Task: GUI Tool
