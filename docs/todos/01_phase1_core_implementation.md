@@ -5,6 +5,15 @@
 
 This phase focuses on building the foundational components of the `mcp-env-setup` tool. The primary goal is to establish a robust and extensible architecture for managing configurations, templates, and authentication, which will serve as the backbone for all subsequent features.
 
+## 1.1. Progress Status (2025-12-09)
+
+| Task | Status | Notes | Issue Registration |
+| --- | --- | --- | --- |
+| Basic CLI Structure (`mcp-env`) | ⚠️ 部分完了 | `--version` 実装済み。`help/init/add` はスケルトンのみでテスト未着手。 | Issue: `Phase01-CLI-Help` / `Phase01-CLI-Init-Add` |
+| Configuration File Generators | ⏳ 未着手 | ジェネレータークラス・テストとも未実装。 | Issue: `Phase01-Config-Generators` |
+| Template System | ⏳ 未着手 | テンプレートの読み込み・一覧表示・適用ロジック未実装。 | Issue: `Phase01-Template-System` |
+| Authentication Manager | ⏳ 未着手 | 永続化・CLI連携・テストすべて未実装。 | Issue: `Phase01-Auth-Manager` |
+
 ## 2. Scope of Work
 
 ### 2.1. Task: Basic CLI Structure (`mcp-env`)

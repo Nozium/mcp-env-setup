@@ -5,6 +5,15 @@
 
 This phase focuses on integrating the core components with the target AI development tools. The goal is to enable the `mcp-env-setup` tool to read, write, and synchronize MCP server configurations across Claude Desktop, Claude Code, Gemini CLI, and VS Code/Cursor, including robust support for `devcontainer` environments.
 
+## 1.1. Progress Status (2025-12-09)
+
+| Task | Status | Notes | Issue Registration |
+| --- | --- | --- | --- |
+| Claude Desktop/Code Integration | ⏳ 未着手 | Phase-01 の CLI/ジェネレーター未完了につき着手前。 | Issue: `Phase02-Claude-Integration` |
+| Gemini CLI Integration | ⏳ 未着手 | 依存するジェネレーターとsync処理が未実装。 | Issue: `Phase02-Gemini-Integration` |
+| VS Code/Cursor Integration | ⏳ 未着手 | `.vscode/mcp.json` 生成ロジック未実装。 | Issue: `Phase02-VSCode-Integration` |
+| Devcontainer Integration | ⏳ 未着手 | devcontainer連携・postCreateCommand未設計。 | Issue: `Phase02-Devcontainer` |
+
 ## 2. Scope of Work
 
 ### 2.1. Task: Claude Desktop/Code Integration
