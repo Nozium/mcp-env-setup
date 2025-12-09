@@ -20,7 +20,7 @@ export const HELP_MESSAGES = {
     add: 'Add a new MCP server to the configuration with interactive setup',
     sync: 'Synchronize MCP configuration across different AI development tools',
     auth: 'Manage authentication credentials and API keys for MCP servers',
-    template: 'Manage and apply predefined MCP configuration templates'
+    template: 'Manage predefined MCP templates and apply them to projects'
   },
 
   // Future: Support for localized messages

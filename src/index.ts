@@ -3,6 +3,7 @@
 import { Command } from 'commander';
 import { version } from '../package.json';
 import { createInitCommand } from './commands/init';
+import { createAddCommand } from './commands/add';
 import { HELP_MESSAGES } from './commands/help';
 
 const program = new Command();
@@ -14,13 +15,7 @@ program
 
 // Add subcommands
 program.addCommand(createInitCommand());
-
-program
-  .command('add')
-  .description(HELP_MESSAGES.commands.add)
-  .action(() => {
-    console.log('Add command - not yet implemented');
-  });
+program.addCommand(createAddCommand());
 
 program
   .command('sync')
