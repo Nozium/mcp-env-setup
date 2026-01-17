@@ -38,12 +38,10 @@ program
     console.log('Template command - not yet implemented');
   });
 
-// Override help to include examples
-program.on('--help', () => {
-  console.log('\nExamples:');
-  HELP_MESSAGES.main.examples.forEach(example => {
-    console.log(`  ${example}`);
-  });
-});
+// Add custom help text
+program.addHelpText('after', `
+Examples:
+${HELP_MESSAGES.main.examples.map(example => `  ${example}`).join('\n')}
+`);
 
 program.parse(process.argv);
